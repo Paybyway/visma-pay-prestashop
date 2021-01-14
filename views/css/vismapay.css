@@ -1,0 +1,95 @@
+p.payment_module.vismapay
+{
+	padding: 0 !important;
+	text-align: center;
+}
+p.payment_module.vismapay a.vismapay-button
+{
+	padding: 0;
+	height: 75px;
+	line-height: 70px;
+	text-align: center;
+	background-color: #fff;
+}
+p.payment_module.vismapay a.vismapay-button img.vismapay-pm-logo
+{
+	max-width: 90%;
+	max-height: 67px;
+}
+.vismapay-row
+{
+	margin: 0 0 10px 0;
+	padding: 15px;
+	border: 1px solid #D6D4D4;
+	border-radius: 4px;
+	background: #FBFBFB
+}
+.vismapay-title
+{
+	font-size: 17px;
+	line-height: 23px;
+	color: #333;
+	font-weight: bold;
+	letter-spacing: -1px;
+}
+.vismapay-title span
+{
+	color: #777;
+}
+p.payment_module.vismapay a:hover
+{
+	background-color: #ffffff !important;
+	-webkit-box-shadow:inset 0 0 3px 3px #f2f2f2;
+	box-shadow:inset 0 0 3px 3px #f2f2f2;
+}
+
+#vismapay_banner
+{
+	height: auto;
+	max-width: 85%;
+}
+#vismapay_submit
+{
+	text-decoration: none;
+}
+div.row p.payment_module a.vismapay-link 
+{
+	background: url('../../logo.png') 15px 15px no-repeat #fbfbfb;
+	background-size: 64px 64px;
+}
+p.payment_module a.vismapay-link:after
+{
+	display: block;
+	content: "\f054";
+	position: absolute;
+	right: 15px;
+	margin-top: -11px;
+	top: 50%;
+	font-family: "FontAwesome";
+	font-size: 25px;
+	height: 22px;
+	width: 14px;
+	color: #777;
+}
+
+.custom-radio.pull-xs-left.vismapay-checkbox
+{
+	margin-top: 0 !important;
+	margin-right: 0 !important;
+}
+
+div.vismapay-payment-method
+{
+	min-width: 165px;
+}
+
+div.vismapay-payment-method label
+{
+	display: inline-block !important;
+}
+
+img.vismapay-pm-logo-pointer
+{
+	cursor: pointer;
+	min-height: 85px;
+}

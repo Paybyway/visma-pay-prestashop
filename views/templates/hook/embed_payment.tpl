@@ -40,6 +40,15 @@ $( document ).ready(function() {
 	<div class="col-xs-12">
 		<p class="vismapay-title">{l s='Visma Pay' mod='vismapay'}&nbsp;<span>{l s='(Internet banking, credit card or credit invoice)' mod='vismapay'}</span></p>
 	</div>
+	{foreach from=$vismapay_payment_methods.creditinvoices key=name item=method}
+	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
+		<p class="payment_module vismapay">
+			<a data-vismapay-button data-selected="{$name}" class="vismapay-button vismapay-{$name}" href="#">
+				<img class="vismapay-pm-logo" src="{$img_url}{$name}.png" alt="{$method}"/>
+			</a>
+		</p>
+	</div>
+	{/foreach}
 	{foreach from=$vismapay_payment_methods.creditcards key=name item=method}
 	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
 		<p class="payment_module vismapay">
@@ -59,15 +68,6 @@ $( document ).ready(function() {
 	</div>
 	{/foreach}
 	{foreach from=$vismapay_payment_methods.banks key=name item=method}
-	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
-		<p class="payment_module vismapay">
-			<a data-vismapay-button data-selected="{$name}" class="vismapay-button vismapay-{$name}" href="#">
-				<img class="vismapay-pm-logo" src="{$img_url}{$name}.png" alt="{$method}"/>
-			</a>
-		</p>
-	</div>
-	{/foreach}
-	{foreach from=$vismapay_payment_methods.creditinvoices key=name item=method}
 	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
 		<p class="payment_module vismapay">
 			<a data-vismapay-button data-selected="{$name}" class="vismapay-button vismapay-{$name}" href="#">

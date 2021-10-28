@@ -13,7 +13,7 @@ class VismaPay extends PaymentModule
 	{
 		$this->name = 'vismapay';
 		$this->tab = 'payments_gateways';
-		$this->version = '1.0.0';
+		$this->version = '1.0.1';
 		$this->author = 'Visma';
 		$this->currencies = true;
 		$this->banner_images = glob(dirname(__FILE__).'/views/img/banners/*.{jpg,jpeg,gif,png}', GLOB_BRACE);
@@ -381,8 +381,8 @@ class VismaPay extends PaymentModule
 			),
 			array(
 				'type'      => 'radio',
-				'label'     => $this->l('Enterpay-yrityslasku'),
-				'desc'      => $this->l('Enable Enterpay-yrityslasku in the Visma Pay payment page.'),
+				'label'     => $this->l('Fellow Yrityslasku'),
+				'desc'      => $this->l('Enable Fellow Yrityslasku in the Visma Pay payment page.'),
 				'name'      => 'VP_SELECT_LASKUYRITYKSELLE',
 				'class'     => 't', 
 				'values'    => array(
@@ -912,8 +912,9 @@ class VismaPay extends PaymentModule
 					{
 						if(Configuration::get('VP_SELECT_LASKUYRITYKSELLE') != '' && $key == 'laskuyritykselle')
 							$vismapay_payment_methods['creditinvoices'][$key] = $method->name;
-						else if($key != 'laskuyritykselle' && $amount >= $method->min_amount && $amount <= $method->max_amount && Configuration::get('VP_SELECT_CINVOICES') != '')
+						else if($key != 'laskuyritykselle' && $amount >= $method->min_amount && $amount <= $method->max_amount && Configuration::get('VP_SELECT_CINVOICES') != '') {
 							$vismapay_payment_methods['creditinvoices'][$key] = $method->name;
+						}
 					}
 				}
 			}

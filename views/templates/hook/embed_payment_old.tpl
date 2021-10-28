@@ -36,7 +36,14 @@ $( document ).ready(function() {
 });
 </script>
 {/literal}
-
+{foreach from=$vismapay_payment_methods.creditinvoices key=name item=method}
+<p class="payment_module">
+	<a data-vismapay-button data-selected="{$name}" class="vismapay-button vismapay-{$name}" href="#">
+		<img src="{$img_url}{$name}.png" width="45" alt="{$method}"/>
+		{$method}
+	</a>
+</p>
+{/foreach}
 {foreach from=$vismapay_payment_methods.creditcards key=name item=method}
 <p class="payment_module">
 	<a data-vismapay-button data-selected="creditcards" class="vismapay-button vismapay-{$name}" href="#">
@@ -54,14 +61,6 @@ $( document ).ready(function() {
 </p>
 {/foreach}
 {foreach from=$vismapay_payment_methods.banks key=name item=method}
-<p class="payment_module">
-	<a data-vismapay-button data-selected="{$name}" class="vismapay-button vismapay-{$name}" href="#">
-		<img src="{$img_url}{$name}.png" width="45" alt="{$method}"/>
-		{$method}
-	</a>
-</p>
-{/foreach}
-{foreach from=$vismapay_payment_methods.creditinvoices key=name item=method}
 <p class="payment_module">
 	<a data-vismapay-button data-selected="{$name}" class="vismapay-button vismapay-{$name}" href="#">
 		<img src="{$img_url}{$name}.png" width="45" alt="{$method}"/>

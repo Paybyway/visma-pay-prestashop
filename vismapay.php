@@ -13,7 +13,7 @@ class VismaPay extends PaymentModule
 	{
 		$this->name = 'vismapay';
 		$this->tab = 'payments_gateways';
-		$this->version = '1.0.1';
+		$this->version = '1.0.2';
 		$this->author = 'Visma';
 		$this->currencies = true;
 		$this->banner_images = glob(dirname(__FILE__).'/views/img/banners/*.{jpg,jpeg,gif,png}', GLOB_BRACE);

@@ -2,7 +2,7 @@
 <module>
 	<name>vismapay</name>
 	<displayName><![CDATA[Visma Pay]]></displayName>
-	<version><![CDATA[1.0.2]]></version>
+	<version><![CDATA[1.0.3]]></version>
 	<description><![CDATA[Visma Pay tarjoaa kaikki yleisimm&auml;t maksutavat verkkokauppaasi.]]></description>
 	<author><![CDATA[Visma]]></author>
 	<tab><![CDATA[payments_gateways]]></tab>

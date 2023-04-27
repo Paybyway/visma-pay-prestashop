@@ -13,7 +13,7 @@ class VismaPay extends PaymentModule
 	{
 		$this->name = 'vismapay';
 		$this->tab = 'payments_gateways';
-		$this->version = '1.0.2';
+		$this->version = '1.0.3';
 		$this->author = 'Visma';
 		$this->currencies = true;
 		$this->banner_images = glob(dirname(__FILE__).'/views/img/banners/*.{jpg,jpeg,gif,png}', GLOB_BRACE);
@@ -381,8 +381,8 @@ class VismaPay extends PaymentModule
 			),
 			array(
 				'type'      => 'radio',
-				'label'     => $this->l('Fellow Yrityslasku'),
-				'desc'      => $this->l('Enable Fellow Yrityslasku in the Visma Pay payment page.'),
+				'label'     => $this->l('Alisa Yrityslasku'),
+				'desc'      => $this->l('Enable Alisa Yrityslasku in the Visma Pay payment page.'),
 				'name'      => 'VP_SELECT_LASKUYRITYKSELLE',
 				'class'     => 't', 
 				'values'    => array(

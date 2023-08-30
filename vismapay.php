@@ -13,7 +13,7 @@ class VismaPay extends PaymentModule
 	{
 		$this->name = 'vismapay';
 		$this->tab = 'payments_gateways';
-		$this->version = '1.0.3';
+		$this->version = '1.0.4';
 		$this->author = 'Visma';
 		$this->currencies = true;
 		$this->banner_images = glob(dirname(__FILE__).'/views/img/banners/*.{jpg,jpeg,gif,png}', GLOB_BRACE);
@@ -619,6 +619,20 @@ class VismaPay extends PaymentModule
 
 		if(Configuration::get('VP_EMBEDDED') == '2')
 		{
+			foreach ($vismapay_payment_methods['banks'] as $key => $value) {
+				$vismaPayPaymentOption = new PrestaShop\PrestaShop\Core\Payment\PaymentOption();
+				$vismaPayPaymentOption->setCallToActionText($value)
+					->setAction($this->context->link->getModuleLink($this->name, 'payment', array(), true))
+					->setInputs(array(
+						'selected' => array(
+							'name' => 'selected',
+							'type' => 'hidden',
+							'value' => $key,
+						)
+					));
+				$paymentOptions[] = $vismaPayPaymentOption;
+			}
+
 			foreach ($vismapay_payment_methods['creditcards'] as $key => $value) {
 				$vismaPayPaymentOption = new PrestaShop\PrestaShop\Core\Payment\PaymentOption();
 				$vismaPayPaymentOption->setCallToActionText($value)
@@ -634,20 +648,6 @@ class VismaPay extends PaymentModule
 			}
 
 			foreach ($vismapay_payment_methods['wallets'] as $key => $value) {
-				$vismaPayPaymentOption = new PrestaShop\PrestaShop\Core\Payment\PaymentOption();
-				$vismaPayPaymentOption->setCallToActionText($value)
-					->setAction($this->context->link->getModuleLink($this->name, 'payment', array(), true))
-					->setInputs(array(
-						'selected' => array(
-							'name' => 'selected',
-							'type' => 'hidden',
-							'value' => $key,
-						)
-					));
-				$paymentOptions[] = $vismaPayPaymentOption;
-			}
-
-			foreach ($vismapay_payment_methods['banks'] as $key => $value) {
 				$vismaPayPaymentOption = new PrestaShop\PrestaShop\Core\Payment\PaymentOption();
 				$vismaPayPaymentOption->setCallToActionText($value)
 					->setAction($this->context->link->getModuleLink($this->name, 'payment', array(), true))

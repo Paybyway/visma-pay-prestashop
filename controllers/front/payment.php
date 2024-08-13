@@ -69,6 +69,7 @@ class VismaPayPaymentModuleFrontController extends ModuleFrontController
 
 		$address = new Address((int)$cart->id_address_invoice);
 		$shipping_address = new Address((int)$cart->id_address_delivery);
+		$phone = isset($address->phone) ? $address->phone : (isset($address->phone_mobile) ? $address->phone_mobile : '');
 
 		$payment->addCustomer(
 			array(
@@ -85,7 +86,8 @@ class VismaPayPaymentModuleFrontController extends ModuleFrontController
 				'shipping_address_street' => htmlspecialchars($shipping_address->address1.' '.$shipping_address->address2),
 				'shipping_address_city' => htmlspecialchars($shipping_address->city),
 				'shipping_address_zip' => htmlspecialchars($shipping_address->postcode),
-				'shipping_address_country' => htmlspecialchars($shipping_address->country)
+				'shipping_address_country' => htmlspecialchars($shipping_address->country),
+				'phone' => preg_replace('/[^0-9+ ]/', '', $phone),
 			)
 		);
 
@@ -100,7 +102,7 @@ class VismaPayPaymentModuleFrontController extends ModuleFrontController
 					'title' => $item['name'],
 					'count' => $item['cart_quantity'],
 					'pretax_price' => (int)(round($item['price']*100, 0)),
-					'tax' => (int)(round($item['rate'], 0)),
+					'tax' => number_format($item['rate'], 2, '.', ''),
 					'price' => (int)(round($item['price_wt']*100, 0)),
 					'type' => 1
 					)
@@ -111,19 +113,14 @@ class VismaPayPaymentModuleFrontController extends ModuleFrontController
 		$carrier = new Carrier($cart->id_carrier);
 		$shippingcost = $cart->getOrderShippingCost($cart->id_carrier);
 		$shippingpretaxcost = $cart->getOrderShippingCost($cart->id_carrier, false);
-		$shippingtaxamount = $shippingcost - $shippingpretaxcost;
-
-		if($shippingpretaxcost > 0)
-			$shippingtax = round($shippingtaxamount / $shippingpretaxcost * 100);
-		else
-			$shippingtax = 0;
+		$shippingtaxrate = $carrier->getTaxesRate($shipping_address);
 
 		array_push($products, array(
 				'id' => $carrier->id_reference,
 				'title' => $carrier->name,
 				'count' => 1,
 				'pretax_price' => (int)(round($shippingpretaxcost * 100, 0)),
-				'tax' => $shippingtax,
+				'tax' => number_format($shippingtaxrate, 2, '.', ''),
 				'price' => (int)(round($shippingcost * 100, 0)),
 				'type' => 2
 				)
